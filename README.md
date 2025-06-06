@@ -44,8 +44,9 @@ ai_task_allocator/
 ```bash
 python generate_input_data.py
 ```
-- Task metrics are used as input data for AI model
-- Data saved to `data/input_data.csv`
+- Task metrics are collected and classified based on resource-consumption
+- Collected data are used as input for AI model
+- Saves data to `data/input_data.csv`
 ### 🔹 Step 2: Train the Model
 
 ```bash
