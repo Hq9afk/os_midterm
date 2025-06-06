@@ -1,0 +1,4 @@
+task_type,cpu_usage,mem_usage,io_usage,duration,priority
+image_processing,65,50,30,40,high
+data_analysis,30,20,15,60,medium
+network_request,50,45,70,20,low

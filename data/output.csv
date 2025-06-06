@@ -1,0 +1,4 @@
+task_type,cpu_usage,mem_usage,io_usage,duration,priority,predicted_allocation
+1,65,50,30,40,0,high
+0,30,20,15,60,2,high
+2,50,45,70,20,1,medium
