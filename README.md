@@ -1,98 +1,98 @@
 # AI Task Resource Allocator
 
-Hệ thống dựa trên mô hình học máy (Decision Tree) để dự đoán mức tài nguyên cần thiết (thấp / trung bình / cao) cho từng tác vụ AI, giúp phân bổ tài nguyên hiệu quả trong môi trường hệ điều hành hoặc cloud system.
+A system based on a machine learning model (Decision Tree) to predict the required resource level (low / medium / high) for each AI task, helping to allocate resources efficiently in an operating system or cloud environment.
 
 ---
 
-## 📁 Cấu trúc dự án
+## 📁 Project Structure
 
 ```
 ai_task_allocator/
 ├── data/
-│   ├── raw_data.csv             # Dữ liệu huấn luyện
-│   └── test_tasks.csv           # Dữ liệu test (tùy chọn)
+│   ├── raw_data.csv             # Training data
+│   └── test_tasks.csv           # Test data (optional)
 ├── model/
-│   ├── train_model.py           # Huấn luyện mô hình
-│   ├── predictor.py             # Dự đoán đơn lẻ và CSV
-│   └── model.pkl                # Mô hình đã lưu
+│   ├── train_model.py           # Model training
+│   ├── predictor.py             # Single and CSV prediction
+│   └── model.pkl                # Saved model
 ├── utils/
-│   └── preprocessing.py         # Hàm xử lý dữ liệu
+│   └── preprocessing.py         # Data processing functions
 ├── test/
-│   └── test_prediction.py       # Kiểm thử nhanh
-├── main.py                      # Chạy chương trình CLI
-└── README.md                    # Hướng dẫn chạy
+│   └── test_prediction.py       # Quick test
+├── main.py                      # CLI program
+└── README.md                    # User guide
 ```
 
 ---
 
-## ⚙️ Yêu cầu môi trường
+## ⚙️ Environment Requirements
 
 - Python 3.8+
-- Các thư viện:
+- Libraries:
   ```bash
   pip install pandas scikit-learn joblib
   ```
 
 ---
 
-## 🚀 Hướng dẫn chạy chương trình
+## 🚀 How to Run
 
-### 🔹 Bước 1: Huấn luyện mô hình
+### 🔹 Step 1: Train the Model
 
 ```bash
 python model/train_model.py
 ```
 
-- Đọc dữ liệu từ `data/raw_data.csv`
-- Lưu mô hình vào `model/model.pkl`
+- Reads data from `data/raw_data.csv`
+- Saves the model to `model/model.pkl`
 
 ---
 
-### 🔹 Bước 2: Dự đoán đơn lẻ (CLI)
+### 🔹 Step 2: Single Prediction (CLI)
 
 ```bash
 python main.py
 ```
 
-- Nhập thông tin về task:
+- Enter task information:
   ```
-  Loại tác vụ: data_analysis
+  Task type: data_analysis
   CPU usage (%): 50
   Memory usage (%): 40
   I/O usage (%): 30
   Duration (s): 60
   Priority: medium
   ```
-- Kết quả:
+- Result:
   ```
-  📊 Dự đoán phân bổ tài nguyên: MEDIUM
+  📊 Predicted resource allocation: MEDIUM
   ```
 
 ---
 
-### 🔹 Bước 3: Dự đoán hàng loạt từ file CSV
+### 🔹 Step 3: Batch Prediction from CSV
 
 ```bash
 python -c "from model import predictor; predictor.predict_from_csv('data/test_data.csv', 'data/output.csv')"
 ```
 
-- In kết quả ra terminal
-- Ghi vào file `data/output.csv` nếu chỉ định
+- Prints results to terminal
+- Writes to `data/output.csv` if specified
 
 ---
 
-### 🔹 Bước 4: Chạy kiểm thử nhanh
+### 🔹 Step 4: Quick Test
 
 ```bash
 python test/test_prediction.py
 ```
 
-- Chạy một ví dụ mẫu để kiểm tra hệ thống
-- Kết quả in ra màn hình
+- Runs a sample example to check the system
+- Prints result to screen
 
 ---
 
-## 🧪 Dữ liệu mẫu (`raw_data.csv`)
+## 🧪 Sample Data (`raw_data.csv`)
 
 ```csv
 task_type,cpu_usage,mem_usage,io_usage,duration,priority,resource_allocated
@@ -104,17 +104,17 @@ machine_learning,80,70,50,90,high,high
 
 ---
 
-## 📌 Ghi chú
+## 📌 Notes
 
-- Các tác vụ được mã hóa tự động bằng bảng ánh xạ nội bộ.
-- Có thể mở rộng sang các mô hình khác như Random Forest, Logistic Regression.
-- Thích hợp cho môi trường hệ điều hành, container scheduler hoặc cloud resource planner.
+- Tasks are automatically encoded using an internal mapping table.
+- Can be extended to other models such as Random Forest, Logistic Regression.
+- Suitable for OS environments, container schedulers, or cloud resource planners.
 
 ---
 
-## 👨‍💻 Nhóm thực hiện
+## 👨‍💻 Team Members
 
-- Thành viên 1: Huấn luyện & mô hình AI
-- Thành viên 2: Tiền xử lý & tích hợp predictor
-- Thành viên 3: Giao diện main.py, test, CSV input
-- Thành viên 4: Báo cáo, slide, kiểm thử tổng hợp
+- Member 1: AI training & modeling
+- Member 2: Preprocessing & predictor integration
+- Member 3: main.py interface, test, CSV input
+- Member 4: Report, slides, overall testing
