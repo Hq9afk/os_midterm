@@ -23,7 +23,7 @@ def get_resource_allocated(proc):
 
 
 if __name__ == "__main__":
-    output = "data/train_data.csv"
+    output = "data/input_data.csv"
     file_exists = os.path.isfile(output)
     with open(output, mode="a", newline="") as csv_file:
         writer = csv.writer(csv_file)
