@@ -2,7 +2,7 @@ from model import predictor
 
 def main():
     print("🔧 Nhập thông tin tác vụ:")
-    task_type = input("Loại tác vụ (image_processing / data_analysis / ...): ").strip()
+    task_type = input("Loại tác vụ (CPU-bound / IO-bound / ...): ").strip()
     cpu = float(input("CPU usage (%): "))
     mem = float(input("Memory usage (%): "))
     io = float(input("I/O usage (%): "))

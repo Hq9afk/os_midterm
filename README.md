@@ -32,21 +32,22 @@ ai_task_allocator/
 - Python 3.8+
 - Libraries:
   ```bash
-  pip install pandas scikit-learn joblib
+  pip install -r requirements.txt
   ```
 
 ---
 
 ## 🚀 How to Run
 
-### 🔹 Step 0: Collect task metrics
+### 🔹 Step 1: Collect task metrics
 
 ```bash
 python generate_input_data.py
 ```
-- Task metrics are used as input data for AI model
-- Data saved to `data/input_data.csv`
-### 🔹 Step 1: Train the Model
+- Task metrics are collected and classified based on resource-consumption
+- Collected data are used as input for AI model
+- Saves data to `data/input_data.csv`
+### 🔹 Step 2: Train the Model
 
 ```bash
 python model/train_model.py
@@ -57,7 +58,7 @@ python model/train_model.py
 
 ---
 
-### 🔹 Step 2: Single Prediction (CLI)
+### 🔹 Step 3: Single Prediction (CLI)
 
 ```bash
 python main.py
@@ -79,10 +80,10 @@ python main.py
 
 ---
 
-### 🔹 Step 3: Batch Prediction from CSV
+### 🔹 Step 4: Batch Prediction from CSV
 
 ```bash
-python -c "from model import predictor; predictor.predict_from_csv('data/input_data.csv', 'data/output.csv')"
+python -c "from model import predictor; predictor.predict_from_csv('data/input_data.csv', 'data/output_data.csv')"
 ```
 
 - Prints results to terminal
@@ -90,7 +91,7 @@ python -c "from model import predictor; predictor.predict_from_csv('data/input_d
 
 ---
 
-### 🔹 Step 4: Quick Test
+### 🔹 Step 5: Quick Test
 
 ```bash
 python test/test_prediction.py
