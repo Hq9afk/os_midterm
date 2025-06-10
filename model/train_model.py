@@ -21,7 +21,7 @@ def load_and_preprocess(filepath):
 
 
 def train_and_save_model():
-    x_train, x_test, y_train, y_test = load_and_preprocess("data/input_data.csv")
+    x_train, x_test, y_train, y_test = load_and_preprocess("data/train_data.csv")
     model = DecisionTreeClassifier(max_depth=5, random_state=42)
     model.fit(x_train, y_train)
 
@@ -31,7 +31,7 @@ def train_and_save_model():
     print("Accuracy:", accuracy_score(y_test, y_pred))
 
     os.makedirs("model", exist_ok=True)
-    joblib.dump(model, "model/model.pkl")
+    joblib.dump(model, "model/model1.pkl")
     print("✅ Model saved at model/model.pkl")
 
 

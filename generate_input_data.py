@@ -8,9 +8,10 @@ THRESHOLDS = {
     "cpu_high": 60,
     "mem_high": 60,
     "io_high": 40,
-    "net_high": 50,         # KB/s
-    "gpu_all_high": 60,      # CPU, MEM, IO >= 40
+    "net_high": 50,  # KB/s
+    "gpu_all_high": 60,  # CPU, MEM, IO >= 40
 }
+
 
 def get_priority(proc):
     try:
@@ -24,8 +25,10 @@ def get_priority(proc):
     except Exception:
         return "unknown"
 
+
 def get_resource_allocated(proc):
     return "high" if get_priority(proc) == "high" else "medium"
+
 
 def classify_task_type(cpu, mem, io, net):
     # Network-bound
@@ -45,8 +48,9 @@ def classify_task_type(cpu, mem, io, net):
         return "Memory-bound"
     return "Unknown"
 
+
 if __name__ == "__main__":
-    output = "data/train_data.csv"
+    output = "data/input_data.csv"
     file_exists = os.path.isfile(output)
 
     # --- Thu thập tài nguyên mạng toàn hệ thống ---
@@ -59,10 +63,7 @@ if __name__ == "__main__":
     with open(output, mode="a", newline="") as csv_file:
         writer = csv.writer(csv_file)
         if not file_exists:
-            writer.writerow([
-                "task_type", "cpu_usage", "mem_usage", "io_usage",
-                "net_usage", "duration", "priority", "resource_allocated"
-            ])
+            writer.writerow(["task_type", "cpu_usage", "mem_usage", "io_usage", "net_usage", "duration", "priority", "resource_allocated"])
 
         for proc in psutil.process_iter(["name", "cpu_percent", "memory_percent", "io_counters", "create_time", "nice"]):
             try:
@@ -78,10 +79,7 @@ if __name__ == "__main__":
                 # Phân loại dựa trên thông tin và net_usage toàn hệ thống
                 task_type = classify_task_type(cpu, mem, io_usage, net_usage)
 
-                writer.writerow([
-                    task_type, int(cpu), int(mem), io_usage,
-                    duration, priority, resource_allocated
-                ])
+                writer.writerow([task_type, int(cpu), int(mem), io_usage, duration, priority, resource_allocated])
             except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
                 continue
 
